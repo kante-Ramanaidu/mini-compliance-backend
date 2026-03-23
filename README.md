@@ -27,15 +27,15 @@ Backend: Node.js, Express
 Database: PostgreSQL
 Deployment: Render
 
-
-
-
-Frontend
-Navigate to frontend folder:
-cd client
+Setup Instructions
+Backend
+Navigate to backend folder:
+cd backend
 Install dependencies:
 npm install
-npm run dev
+npm start
+
+
 
 Features
 
