@@ -5,7 +5,7 @@ export const getTasksByClient = async (req, res) => {
 
   try {
     const result = await pool.query(
-      "SELECT * FROM compliance_Tasks WHERE client_id = $1 ORDER BY due_date",
+      "SELECT * FROM compliance_tasks WHERE client_id = $1 ORDER BY due_date",
       [clientId]
     );
 
@@ -30,7 +30,7 @@ export const createTask = async (req, res) => {
   } = req.body;
 
   try {
-    // basic validation
+   
     if (!client_id || !title || !due_date) {
       return res.status(400).json({
         message: "client_id, title and due_date are required",
@@ -38,7 +38,7 @@ export const createTask = async (req, res) => {
     }
 
     const result = await pool.query(
-      `INSERT INTO compliance_Tasks
+      `INSERT INTO compliance_tasks
       (client_id, title, description, category, due_date, status, priority)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *`,
@@ -72,7 +72,7 @@ export const updateTaskStatus = async (req, res) => {
     }
 
     const result = await pool.query(
-      "UPDATE compliance_Tasks SET status = $1 WHERE id = $2 RETURNING *",
+      "UPDATE compliance_tasks SET status = $1 WHERE id = $2 RETURNING *",
       [status, id]
     );
 
